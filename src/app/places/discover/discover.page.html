@@ -1,0 +1,55 @@
+<ion-header>
+ 
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Discover Places</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-segment  (ionChange)="onChnagesgment($event)">
+    <ion-segment-button value="all" >All Places </ion-segment-button>
+    <ion-segment-button value="bookabel">Bookable Button</ion-segment-button>
+  </ion-segment>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            
+            <ion-card-title>{{loded_places[0].title}}</ion-card-title>
+            <ion-card-subtitle>{{loded_places[0].price}} / Per Person</ion-card-subtitle>
+          </ion-card-header>
+          <ion-img [src]="loded_places[0].imageurl"></ion-img>
+          <ion-card-content>
+          
+           <p>{{loded_places[0].description}}</p>
+          </ion-card-content>
+          <div padding>
+            <ion-button fill="clear" color="primary" [routerLink]="['/','places','tabs','discover',loded_places[0].id]">More</ion-button>
+          </div>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-list>
+          <ion-item detail *ngFor="let place of loded_places.slice(1)" [routerLink]="['/','places','tabs','discover',place.id]">
+            <ion-thumbnail slot="start" > <ion-img [src]="place.imageurl"></ion-img></ion-thumbnail>
+           
+            <ion-label>
+              <h2>{{place.title}}</h2>
+              <p>{{place.description}}</p>
+            </ion-label>
+          
+          </ion-item>
+         
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+
+</ion-content>
